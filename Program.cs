@@ -47,11 +47,15 @@ int charSum(double N)
     //объявляю переменные
     double mutable = N;  // создаем копию вводимого
     int summary = 0;
-    while (mutable % 1 != 0)    // переводим число с запятыми в целое
+    while (mutable % 1 > 0)    // переводим число с запятыми в целое
     {
         mutable = mutable * 10;
     }
-    int countOfCharInNumber = Convert.ToInt32(Math.Log(mutable, 10) + 1);   // Находим количество цифр в числе
+    int countOfCharInNumber = Convert.ToInt32(Math.Log(mutable, 10)); // Находим количество цифр в числе
+    if (countOfCharInNumber < 1)
+    {
+        countOfCharInNumber++;
+    }   
     long[] massiveOfNumber = new long[countOfCharInNumber];
     for (int i = 0; i < countOfCharInNumber; i++)   //Насыщаем массив цифрами числа и вычисляем их сумму
     {
@@ -80,7 +84,7 @@ catch
 6, 1, 33 -> [6, 1, 33]
 */
 // ----------------------------SOLUTION-------------------------------------------------------------------
-
+/*
 int[] mass(int N)
 {
     int[] mass = new int[N];
@@ -101,4 +105,43 @@ try
 catch
 {
     System.Console.WriteLine("Введено не число, или число больше, чем может вместить int");
+}
+*/
+
+//-----------------------------Exercise # 26 HARD MODE--------------------------------------------------------------
+/*
+Задача 26 HARD - необязательная: Напишите программу, которая принимает на вход число (целое или вещественное) и выдаёт количество цифр в числе.
+456 -> 3
+0.78 -> 2
+89.126 -> 5
+*/
+// ----------------------------SOLUTION-------------------------------------------------------------------
+
+int NumSum(double N)
+{
+    int j = 0;
+    double mutable = N;
+    while (mutable % 1 > 0)
+    {
+
+        mutable = mutable * 10;
+
+    }
+    while (mutable > 0)
+    {
+        mutable = Convert.ToInt32(mutable / 10);
+        j++;
+
+    }
+    return j;
+}
+try
+{
+    System.Console.Write("Введите число для счета = ");
+    double a = Convert.ToDouble(Console.ReadLine());
+    System.Console.WriteLine("Число " + a + " состоит из " + NumSum(a) + " цифр");
+}
+catch
+{
+    System.Console.WriteLine("Введено не число, или число больше, чем может вместить double");
 }
