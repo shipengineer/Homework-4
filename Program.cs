@@ -24,9 +24,7 @@ try
     System.Console.Write("Введите степень = ");
 
     int b = Convert.ToInt32(Console.ReadLine());
-    System.Console.WriteLine(power(a, b));
-
-
+    System.Console.WriteLine(a + " в степени " + b + " = " + power(a, b));
 }
 catch
 {
